@@ -4,7 +4,7 @@ arrow==1.2.2
 async-timeout==4.0.2
 asynctest==0.13.0
 attrs==21.4.0
-backports.zoneinfo==0.2.1
+backports.zoneinfo
 binance==0.3
 # bravado==10.4.1
 # bravado-core==5.17.0
