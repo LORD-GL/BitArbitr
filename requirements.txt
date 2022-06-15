@@ -15,7 +15,6 @@ beautifulsoup4==4.11.0
 bleach==5.0.0
 Bybit==0.2.12
 cached-property==1.5.2
-cbpro==1.1.4
 certifi==2020.12.5
 cffi==1.14.5
 chardet==4.0.0
