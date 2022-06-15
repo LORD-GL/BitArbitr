@@ -7,7 +7,7 @@ import json
 # Получаем данные о текущих сделках и стаканах
 def get_ticker(pair):
     url_trades = 'https://api.exmo.me/v1/ticker/'
-    ticker = requests.get(url_trades) 
+    ticker = requests.get(url_trades, verify=False) 
     info = ticker.text
     info = json.loads(info) 
     info_pair = info.get(pair) 

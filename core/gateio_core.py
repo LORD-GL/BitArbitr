@@ -6,10 +6,10 @@ from time import sleep
 def get_price(symbol="BTC_USDT"):
     headers = {'Accept': 'application/json', 'Content-Type': 'application/json'}
     try:
-        resp = requests.get(f"https://api.gateio.ws/api/v4/spot/order_book?currency_pair={symbol}", headers=headers).json()
+        resp = requests.get(f"https://api.gateio.ws/api/v4/spot/order_book?currency_pair={symbol}", headers=headers, verify=False).json()
     except:
         sleep(1)
-        resp = requests.get(f"https://api.gateio.ws/api/v4/spot/order_book?currency_pair={symbol}", headers=headers).json()
+        resp = requests.get(f"https://api.gateio.ws/api/v4/spot/order_book?currency_pair={symbol}", headers=headers, verify=False).json()
     try:
         return float(resp['asks'][0][0])
     except:

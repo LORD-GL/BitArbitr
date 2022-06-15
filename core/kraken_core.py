@@ -13,7 +13,7 @@ def get_price(symbol="BTCUSDT"):
     #     return round( float(a.loc[:, 'c'][0][0]), 4)
     # except:
     #     return -1
-    resp = requests.get(f'https://api.kraken.com/0/public/Ticker?pair={symbol}').json()
+    resp = requests.get(f'https://api.kraken.com/0/public/Ticker?pair={symbol}', verify=False).json()
     try:
         if "BTCUSDT" == symbol:
             return round( float(resp['result']['XBTUSDT']['c'][0]), 4)
