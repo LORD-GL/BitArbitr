@@ -10,7 +10,7 @@ main_keyboard.row('Обновить')
 
 def read_usernames():
     cwd = os.getcwd()
-    fileD = open(cwd + 'usernames.json', 'r') # + '\\main\\'
+    fileD = open(cwd + '/usernames.json', 'r') # + '\\main\\'
     data = json.load(fileD)
     fileD.close()
     return data['data']
