@@ -3,6 +3,8 @@ import json
 # tBTCUSDT
 
 def get_price(base, quor):
+    if quor == "USDC":
+        return -1
     #pair[1] = pair[1][:-1]
     quor = quor[:-1]
     #symbol = "".join(pair)

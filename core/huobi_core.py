@@ -16,6 +16,10 @@ client = HuobiRestClient(
 
 def get_price(symbol):
     try:
+        if "hotusdt" in symbol:
+            return -1
+        elif "gstusdt" in symbol:
+            return -1
         return float(client.market_history_trade(symbol=symbol).data['data'][0]['data'][0]['price'])
     except:
         return -1
