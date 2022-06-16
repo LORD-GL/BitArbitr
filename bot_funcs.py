@@ -103,10 +103,10 @@ def make_dict_ex_price(pair):
 def print_min_max_data(data, curr, id, bot, msg_id=0, iter=0):
     mes = ""
     mes += f"{'/'.join(curr)}:\n"
-    mes += f"Максимальная цена: {data['max']['price']} | Биржа: {data['max']['exchanger']}\n"
-    mes += f"Минимальная цена: {data['min']['price']} | Биржа: {data['min']['exchanger']}\n"
+    mes += f"Max price: {data['max']['price']} | {data['max']['exchanger']}\n"
+    mes += f"Min price: {data['min']['price']} | {data['min']['exchanger']}\n"
     #mes += f"Difference: {count_dif_percent(min_max['max']['price'], min_max['min']['price'])}\n"
-    mes += f"Максимальная Разница: {data['dif_percent']}%\n"
+    mes += f"Spread: {data['dif_percent']}%\n"
     if iter:
         mes += f"\n(Повторение: {iter}) | Данные обновятся {UPDATING_TIME} раз"
         bot.edit_message_text(chat_id = id, text = mes, message_id = msg_id)
