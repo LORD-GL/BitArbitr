@@ -56,7 +56,7 @@ def make_dict_ex_price(pair):
 
     ex_price['cur'] = pair
 
-    ex_price['Bybit'] = bybit.get_price(symbol="".join(pair)) #ETHUSDT
+    ex_price['Bybit'] = bybit.get_price(symbolInp="".join(pair)) #ETHUSDT
     mes = "(Bybit)         | " + "/".join(pair) + ': ' + str(check_error(ex_price.get("Bybit"))) + "\n"
 
     ex_price['Binance'] = binance.get_price(symbol="".join(pair)) 
