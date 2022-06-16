@@ -46,7 +46,7 @@ pairs = [
         ["FIL", "USDT"], ["THETA", "USDT"],     ["OP", "USDC"], ["SAND", "USDC"],
                                                 ############# DAI ################
         ["SAND", "USDT"], ["APE", "USDT"],      ["BTC", "DAI"], 
-        ["HNT", "USDT"], ["GUSD", "USDT"],      ["ETH", "DAI"], 
+        ["HNT", "USDT"],                        ["ETH", "DAI"], 
         ["EGLD", "USDT"], ["EOS", "USDT"],      ["XBT", "DAI"], 
         ["HT", "USDT"], ["BSV", "USDT"],        ["BUSD", "DAI"],
         ["AXS", "USDT"], ["AAVE", "USDT"],      ["BNB", "DAI"], 
