@@ -16,7 +16,7 @@ def read_usernames():
     return data['data']
 
 USERNAME_LIST = read_usernames()
-THREAD_COUNT = 40
+THREAD_COUNT = 50
 UPDATING_TIME = 10
 
 pairs = [
