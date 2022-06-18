@@ -53,27 +53,27 @@ def update(message):
 @bot.message_handler(func = lambda message: func.check_admin(message) == True)
 @func.private
 def admin(message):
-    inf = "FORM: admin password method username\npassword - password for admin panel\nmathod - method to do:\n  add - add new user to access to bot\n   userslist - show all users who have access to bot\n     getinfo - get information about user\nExemple: admin 12345 add me"
+    inf = "FORM: admin method [username]\nmathod - method to do:\n  add - add new user to access to bot\n   userslist - show all users who have access to bot\n     getinfo - get information about user\nExemple: admin 12345 add me"
     data = message.text.split(" ")
     if len(data) == 1 or data[1] == "info":
         bot.send_message(message.chat.id, inf)
-    elif data[1] == ADMIN_PASSWORD:
-        if len(data) < 3:
-            bot.send_message(message.chat.id, "You didn't send any method to do")
-        elif data[2] == "add" and len(data) == 4:
-            func.admin_add_user(data[3], message.chat.id)
-        elif data[2] == "userslist":
+    elif message.from_user.username in ADMINS:
+        if len(data) < 2:
+            bot.send_message(message.chat.id, "You didn't send any method to do or username")
+        elif data[1] == "add" and len(data) == 3:
+            func.admin_add_user(data[2], message.chat.id)
+        elif data[1] == "userslist":
             func.admin_userslist(message.chat.id)
-        elif data[2] == "getinfo" and len(data) == 4:
-            func.admin_getinfo(data[3], message.chat.id)
-        elif data[2] == "delete" and len(data) == 4:
-            func.admin_delete_user(data[3], message.chat.id)
+        elif data[1] == "getinfo" and len(data) == 3:
+            func.admin_getinfo(data[2], message.chat.id)
+        elif data[1] == "delete" and len(data) == 3:
+            func.admin_delete_user(data[2], message.chat.id)
         else:
             bot.send_message(message.chat.id, "Sorry, i don't know this method (send: admin info to see more)")
     else:
-        print(f"User have tried access to the admin panel with wrong ({data[1]}) password at", end = " | ")
+        print(f"User have tried access to the admin panel with without permission", end = " | ")
         print(strftime('%d %b %Y %H:%M:%S (+0)', gmtime()))
-        bot.send_message(message.chat.id, "Incorrect password")
+        bot.send_message(message.chat.id, "Permission Error")
 
 @bot.message_handler(content_types=["text"])
 @func.private

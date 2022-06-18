@@ -147,7 +147,7 @@ def private(func):
 def admin_add_user(username, id):
     if username not in USERNAME_LIST:
         cwd = os.getcwd()
-        fileD = open(cwd + '/usernames.json', 'w') # '\\main\\' + 
+        fileD = open(cwd + '\\usernames.json', 'w') # '\\main\\' + 
         USERNAME_LIST.append(username)
         json_list = json.dumps({"data" : USERNAME_LIST})
         fileD.write(json_list)
@@ -171,7 +171,7 @@ def admin_getinfo(username, id):
 def admin_delete_user(username, id):
     if username in USERNAME_LIST:
         cwd = os.getcwd()
-        fileD = open(cwd + '/usernames.json', 'w') # '\\main\\' + 
+        fileD = open(cwd + '\\usernames.json', 'w') # '\\main\\' + 
         USERNAME_LIST.remove(username)
         json_list = json.dumps({"data" : USERNAME_LIST})
         fileD.write(json_list)
