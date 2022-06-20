@@ -7,7 +7,9 @@ client = cbpro.PublicClient( #AuthenticatedClient
 #print(client.get_product_ticker('BTC-USDT')['price'])
 
 def get_price(symbol="ETH-USDT"):
+    data = client.get_product_ticker(symbol)
     try:
-        return float( client.get_product_ticker(symbol)['price'] )
+        return float(data['price']), round( float(data['volume']), 2)
     except:
-        return -1
+        return -1, -1
+

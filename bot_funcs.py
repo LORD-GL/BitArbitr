@@ -9,7 +9,7 @@ from core import lbank_core as lbank, bitfinex_core as bitfinex # ONLY USDT
 # import poloniex_core as poloniex
 
 from conf import *
-from time import gmtime, strftime
+from time import gmtime, strftime, time
 
 
 def check_error(price):
@@ -50,53 +50,66 @@ def find_min_max_price(pair_dict):
     "Exception" : Exc
     }
 
-def make_dict_ex_price(pair):
+
+
+def make_dict_ex_price(pair): # update or inf
     ex_price = {}
+    ex_vol = {}
     mes = ""
 
     ex_price['cur'] = pair
+    ex_vol['cur'] = pair
 
-    ex_price['Bybit'] = bybit.get_price(symbolInp="".join(pair)) #ETHUSDT
-    mes = "(Bybit)         | " + "/".join(pair) + ': ' + str(check_error(ex_price.get("Bybit"))) + "\n"
+    start = time()
+    ex_price['Bybit'], ex_vol['Bybit'] = bybit.get_price(symbolInp="".join(pair)) #ETHUSDT, 11111
+    print("Bybit", time() - start)
+    start = time()
+    ex_price['Binance'], ex_vol['Binance'] = binance.get_price(symbol="".join(pair)) 
+    print("Binance", time() - start)
+    start = time()
+    ex_price['Kucoin'], ex_vol['Kucoin'] = kucoin.get_price(symbol="-".join(pair))
+    print("Kucoin", time() - start)
+    start = time()
+    ex_price['Huobi'], ex_vol['Huobi'] = huobi.get_price(symbol="".join(pair).lower())
+    print("Huobi", time() - start)
+    start = time()
+    ex_price['Coinbase'], ex_vol['Coinbase'] = coinbase.get_price(symbol="-".join(pair))
+    print("Coinbase", time() - start)
+    start = time()
+    ex_price['FTX'], ex_vol['FTX'] = ftx.get_price(pair[0], pair[1])
+    print("FTX", time() - start)
+    start = time()
+    ex_price['OKEX'], ex_vol['OKEX'] = okx.get_price(symbol="-".join(pair))
+    print("OKEX", time() - start)
+    start = time()
+    ex_price['Kraken'], ex_vol['Kraken'] = kraken.get_price(symbol="".join(pair))
+    print("Kraken", time() - start)
+    start = time()
+    ex_price['Phemex'], ex_vol['Phemex'] = phemex.get_price(symbol="".join(pair))
+    print("Phemex", time() - start)
+    start = time()
+    ex_price['Gate.io'], ex_vol['Gate.io'] = gateio.get_price(symbol="_".join(pair))
+    print("Gate", time() - start)
+    start = time()
+    ex_price['LBank'], ex_vol['LBank'] = lbank.get_price(symbol="_".join(pair).lower())
+    print("LBank", time() - start)
+    start = time()
+    ex_price['Bitfinex'], ex_vol['Bitfinex'] = bitfinex.get_price(pair[0].lower(), pair[1].lower())
+    print("Bitfinex", time() - start)
+    
 
-    ex_price['Binance'] = binance.get_price(symbol="".join(pair)) 
-    mes += "(Binance)    | " + "/".join(pair) + ': ' + str(check_error(ex_price.get("Binance"))) + "\n"
-
-    ex_price['Kucoin'] = kucoin.get_price(symbol="-".join(pair))
-    mes += "(Kucoin)      | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Kucoin"))) + "\n"
-
-    ex_price['Huobi'] = huobi.get_price(symbol="".join(pair).lower())
-    mes += "(Huobi)       | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Huobi"))) + "\n"
-
-    # ex_price['Exmo'] = exmo.get_price(symbol="_".join(pair)) НЕТ ОБЪЕМОВ
-    # mes += "(Exmo) " + "/".join(pair) + ": " + str(ex_price.get("Exmo")) + "\n"
-
-    ex_price['Coinbase'] = coinbase.get_price(symbol="-".join(pair))
-    mes += "(Coinbase) | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Coinbase"))) + "\n"
-
-    ex_price['FTX'] = ftx.get_price(pair[0], pair[1])
-    mes += "(FTX)            | " + "/".join(pair) + ": " + str(check_error(ex_price.get("FTX"))) + "\n"
-
-    ex_price['OKEX'] = okx.get_price(symbol="-".join(pair))
-    mes += "(OKEX)        | " + "/".join(pair) + ": " + str(check_error(ex_price.get("OKEX"))) + "\n"
-
-    ex_price['Kraken'] = kraken.get_price(symbol="".join(pair))
-    mes += "(Kraken)     | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Kraken"))) + "\n"
-
-    ex_price['Phemex'] = phemex.get_price(symbol="".join(pair))
-    mes += "(Phemex)   | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Phemex"))) + "\n"
-
-    ex_price['Gate.io'] = gateio.get_price(symbol="_".join(pair))
-    mes += "(Gate.io)     | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Gate.io"))) + "\n"
-
-    ex_price['LBank'] = lbank.get_price(symbol="_".join(pair).lower())
-    mes += "(LBank)       | " + "/".join(pair) + ": " + str(check_error(ex_price.get("LBank"))) + "\n"
-
-    ex_price['Bitfinex'] = bitfinex.get_price(pair[0], pair[1])
-    mes += "(Bitfinex)    | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Bitfinex"))) + "\n"
-
-    # ex_price['Poloniex'] = poloniex.get_price(pair[0], pair[1])
-    # mes += "(Poloniex) " + "/".join(pair) + ": " + str(ex_price.get("Poloniex")) + "\n"
+    mes += "(Bybit)         | " + str(check_error(ex_price.get("Bybit"))) + f" | Vol: {check_error(ex_vol['Bybit'])}\n"
+    mes += "(Binance)    | " + str(check_error(ex_price.get("Binance"))) + f" | Vol: {check_error(ex_vol['Binance'])}\n"
+    mes += "(Kucoin)      | " + str(check_error(ex_price.get("Kucoin"))) + f" | Vol: {check_error(ex_vol['Kucoin'])}\n"
+    mes += "(Huobi)       | " + str(check_error(ex_price.get("Huobi"))) + f" | Vol: {check_error(ex_vol['Huobi'])}\n"
+    mes += "(Coinbase) | " + str(check_error(ex_price.get("Coinbase"))) + f" | Vol: {check_error(ex_vol['Coinbase'])}\n"
+    mes += "(FTX)            | " + str(check_error(ex_price.get("FTX"))) + f" | Vol: {check_error(ex_vol['FTX'])}\n"
+    mes += "(OKEX)        | " + str(check_error(ex_price.get("OKEX"))) + f" | Vol: {check_error(ex_vol['OKEX'])}\n"
+    mes += "(Kraken)     | " + str(check_error(ex_price.get("Kraken"))) + f" | Vol: {check_error(ex_vol['Kraken'])}\n"
+    mes += "(Phemex)   | " + str(check_error(ex_price.get("Phemex"))) + f" | Vol: {check_error(ex_vol['Phemex'])}\n"
+    mes += "(Gate.io)     | " + str(check_error(ex_price.get("Gate.io"))) + f" | Vol: {check_error(ex_vol['Gate.io'])}\n"
+    mes += "(LBank)       | " + str(check_error(ex_price.get("LBank"))) + f" | Vol: {check_error(ex_vol['LBank'])}\n"
+    mes += "(Bitfinex)    | " + str(check_error(ex_price.get("Bitfinex"))) + f" | Vol: {check_error(ex_vol['Bitfinex'])}\n"
 
     return ex_price, mes
 
