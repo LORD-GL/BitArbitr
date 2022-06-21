@@ -1,8 +1,17 @@
 from conf import *
-from time import time, gmtime, strftime
+from time import time, gmtime, strftime, sleep
 from threading import Thread
 from queue import Queue
-import bot_funcs as func
+exc = True
+while exc:
+    try:
+        import bot_funcs as func
+        print("Connected!")
+        exc = False
+    except:
+        print(f"Connection problems! {strftime('%d %b %Y %H:%M:%S (+0)', gmtime())}")
+        sleep(15)
+        pass
 
 @bot.message_handler(func = lambda message: message.text == 'Справка')
 @bot.message_handler(commands=["start"])
