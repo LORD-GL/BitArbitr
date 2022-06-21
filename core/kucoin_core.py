@@ -18,7 +18,3 @@ def get_price(symbol="BTC-USDT"):
         return float(data['price']), round(float(client.get_24hr_stats(symbol)['vol']), 2)
     except:
         return -1, -1
-<<<<<<< HEAD
-=======
-
->>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868

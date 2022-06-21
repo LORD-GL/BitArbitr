@@ -5,11 +5,7 @@ import urllib3
 
 urllib3.disable_warnings()
 
-<<<<<<< HEAD
 HTTP_API = "5323831907:AAHSZmJmnOAhB8lgJJ5KOfny3WbhgQlAw90"
-=======
-HTTP_API = "5486335698:AAGGCNfpkDknsb2ZtTwcpV3J8Oe4MDGvWq4"
->>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
 ADMINS = ["LORD_GL", "Spanda82"]
 bot = telebot.TeleBot(HTTP_API)
 main_keyboard = telebot.types.ReplyKeyboardMarkup(True)

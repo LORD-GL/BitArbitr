@@ -4,16 +4,11 @@
     key: YsEPd7L4ZJioawkYBg
  secret: bcnkPzAajAVOzc3mICXQf25ytpi4LM5rlVCB
 """
-<<<<<<< HEAD
-=======
-
->>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
 from pybit import inverse_perpetual
 session_unauth = inverse_perpetual.HTTP(
     endpoint="https://api-testnet.bybit.com"
 )
 
-<<<<<<< HEAD
 def get_price(symbolInp="BTCUSDT"):
     if "CVX" in symbolInp:
         return -1, -1
@@ -22,10 +17,6 @@ def get_price(symbolInp="BTCUSDT"):
     elif "GST" in symbolInp:
         return -1, -1
     
-=======
-
-def get_price(symbolInp="BTCUSDT"):
->>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
     try:
         data = session_unauth.latest_information_for_symbol(symbol=symbolInp)
         return float(data['result'][0]['last_price']), round( float(data['result'][0]['volume_24h']), 2)
