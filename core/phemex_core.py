@@ -2,17 +2,10 @@ import json
 import requests
 
 def get_price(symbol="BTCUSDT"):
-    resp = requests.get(f"https://api.phemex.com/md/orderbook?symbol=s{symbol}", verify=False).json()
+    if symbol == "GSTUSDT":
+        return -1, -1
+    resp = requests.get(f"https://api.phemex.com/md/spot/ticker/24hr?symbol=s{symbol}").json()
     try:
-        return float(resp['result']['book']['asks'][0][0]/100000000)
+        return float(resp['result']['lastEp']/100000000), round(float(resp['result']['volumeEv']/100000000), 2)
     except:
-        return -1
-
-# pairs = [["ETH", "USDT"], ["BTC", "USDT"],
-#         ["USDC", "USDT"], ["BNB", "USDT"],
-#         ["ADA", "USDT"], ["XRP", "USDT"],
-#         ["BUSD", "USDT"], ["SOL", "USDT"],
-#         ["DOT", "USDT"]]
-
-# for i in pairs:
-#     print(i, get_price("".join(i)))
+        return -1, -1

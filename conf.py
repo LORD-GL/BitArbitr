@@ -1,9 +1,12 @@
 import telebot
 import os
 import json
+import urllib3
+
+urllib3.disable_warnings()
 
 HTTP_API = "5323831907:AAHSZmJmnOAhB8lgJJ5KOfny3WbhgQlAw90"
-ADMIN_PASSWORD = "arbitrAdminPass74282"
+ADMINS = ["LORD_GL", "Spanda82"]
 bot = telebot.TeleBot(HTTP_API)
 main_keyboard = telebot.types.ReplyKeyboardMarkup(True)
 main_keyboard.row('Обновить')
@@ -27,7 +30,7 @@ pairs = [
         ["BUSD", "USDT"], ["SOL", "USDT"],      ["ADA", "USDC"], ["BNB", "USDC"],
         ["DOT", "USDT"], ["DOGE", "USDT"],      ["SOL", "USDC"], ["DAI", "USDC"],
 
-        ["DAI", "USDT"], ["WBTC", "USDT"],      ["WIN", "USDC"], ["LINK", "USDC"],
+        ["DAI", "USDT"], ["WBTC", "USDT"],      ["LINK", "USDC"],
         ["TRX", "USDT"], ["LEO", "USDT"],       ["LTC", "USDC"],
         ["AVAX", "USDT"], ["SHIB", "USDT"],     ["APE", "USDC"], ["EOS", "USDC"],
         ["MATIC", "USDT"], ["FTT", "USDT"],     ["DOT", "USDC"], ["ATOM", "USDC"],
@@ -41,15 +44,15 @@ pairs = [
 
         ["GST", "USDT"], ["VET", "USDT"],       ["RUNE", "USDC"], ["VRA", "USDC"],
         ["FLOW", "USDT"], ["MANA", "USDT"],     ["DOGE", "USDC"], ["GMT", "USDC"],
-        ["HBAR", "USDT"], ["XTZ", "USDT"],      ["BTTC", "USDC"], ["LUNA", "USDC"],
+        ["HBAR", "USDT"], ["XTZ", "USDT"],      ["LUNA", "USDC"],
         ["ICP", "USDT"], ["TUSD", "USDT"],      ["ZEC", "USDC"], ["ZIL", "USDC"],
         ["FIL", "USDT"], ["THETA", "USDT"],     ["OP", "USDC"], ["SAND", "USDC"],
                                                 ############# DAI ################
         ["SAND", "USDT"], ["APE", "USDT"],      ["BTC", "DAI"], 
-        ["HNT", "USDT"],                        ["ETH", "DAI"], 
+        ["HNT", "USDT"], ["VRA", "USDT"],       ["ETH", "DAI"], 
         ["EGLD", "USDT"], ["EOS", "USDT"],      ["XBT", "DAI"], 
-        ["HT", "USDT"], ["BSV", "USDT"],        ["BUSD", "DAI"],
-        ["AXS", "USDT"], ["AAVE", "USDT"],      ["BNB", "DAI"], 
+        ["HT", "USDT"], ["BSV", "USDT"],        
+        ["AXS", "USDT"], ["AAVE", "USDT"],     
 
         ["GALA", "USDT"], ["MKR", "USDT"],      
         ["GRT", "USDT"], ["XEC", "USDT"],       
@@ -63,7 +66,7 @@ pairs = [
         ["DASH", "USDT"], ["NEXO", "USDT"],     
         ["ZIL", "USDT"], ["BAT", "USDT"],
 
-        ["CELO", "USDT"], ["BORA", "USDT"], ###
+        ["CELO", "USDT"], ["BORA", "USDT"],
         ["ENJ", "USDT"], ["XDC", "USDT"],
         ["CRV", "USDT"], ["DCR", "USDT"],
         ["HOT", "USDT"], ["MINA", "USDT"],

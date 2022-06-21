@@ -3,12 +3,12 @@ from time import time, gmtime, strftime
 from threading import Thread
 from queue import Queue
 import bot_funcs as func
-import conf
 
+@bot.message_handler(func = lambda message: message.text == 'Справка')
 @bot.message_handler(commands=["start"])
 @func.private
 def start(message):
-    bot.send_message(message.chat.id, "Здравствуйте! Нажмите \"Обновить\", чтобы получить список разниц цен \nИли введите пару для того, чтобы посмотреть подробности (Пример: BTC/USDT)", reply_markup=main_keyboard)
+    bot.send_message(message.chat.id, "Здравствуйте! Нажмите \"Обновить\", чтобы получить список разниц цен \nВведите пару для того, чтобы узнать цены на разных биржах для неё(Пример: BTC/USDT)\nВведите \"Список пар\" для того, чтобы посмотреть все доступные в боте валюные пары.", reply_markup=main_keyboard)
 
 @bot.message_handler(func = lambda message: message.text == 'Обновить')
 @func.private
@@ -49,31 +49,41 @@ def update(message):
 
     print(f"Working time with {THREAD_COUNT} treads and {len(pairs)} pairs is {time() - start_time}")
 
-# admin password method username
+# admin method username
 @bot.message_handler(func = lambda message: func.check_admin(message) == True)
 @func.private
 def admin(message):
-    inf = "FORM: admin password method username\npassword - password for admin panel\nmathod - method to do:\n  add - add new user to access to bot\n   userslist - show all users who have access to bot\n     getinfo - get information about user\nExemple: admin 12345 add me"
+    inf = "FORM: admin method [username]\nmathod - method to do:\n  add - add new user to access to bot\n   userslist - show all users who have access to bot\n     getinfo - get information about user\n  delete - delete user\nExemple: admin 12345 add me"
     data = message.text.split(" ")
     if len(data) == 1 or data[1] == "info":
         bot.send_message(message.chat.id, inf)
-    elif data[1] == ADMIN_PASSWORD:
-        if len(data) < 3:
-            bot.send_message(message.chat.id, "You didn't send any method to do")
-        elif data[2] == "add" and len(data) == 4:
-            func.admin_add_user(data[3], message.chat.id)
-        elif data[2] == "userslist":
+    elif message.from_user.username in ADMINS:
+        if len(data) < 2:
+            bot.send_message(message.chat.id, "You didn't send any method to do or username")
+        elif data[1] == "add" and len(data) == 3:
+            func.admin_add_user(data[2], message.chat.id)
+        elif data[1] == "userslist":
             func.admin_userslist(message.chat.id)
-        elif data[2] == "getinfo" and len(data) == 4:
-            func.admin_getinfo(data[3], message.chat.id)
-        elif data[2] == "delete" and len(data) == 4:
-            func.admin_delete_user(data[3], message.chat.id)
+        elif data[1] == "getinfo" and len(data) == 3:
+            func.admin_getinfo(data[2], message.chat.id)
+        elif data[1] == "delete" and len(data) == 3:
+            func.admin_delete_user(data[2], message.chat.id)
         else:
             bot.send_message(message.chat.id, "Sorry, i don't know this method (send: admin info to see more)")
     else:
-        print(f"User have tried access to the admin panel with wrong ({data[1]}) password at", end = " | ")
+        print(f"User have tried access to the admin panel with without permission", end = " | ")
         print(strftime('%d %b %Y %H:%M:%S (+0)', gmtime()))
-        bot.send_message(message.chat.id, "Incorrect password")
+        bot.send_message(message.chat.id, "Permission Error")
+
+@bot.message_handler(func = lambda message: message.text == "Список пар")
+@func.private
+def pair_list(message):
+    mes = "Отсортированный по алфавиту список пар:\n"
+    pairs.sort()
+    for i in range(1, len(pairs)+1):
+        mes += "/".join(pairs[i-1]) + f"({i})\n"
+    mes += f"Всего: {len(pairs)}\n"
+    bot.send_message(message.chat.id, mes)
 
 @bot.message_handler(content_types=["text"])
 @func.private
@@ -89,7 +99,6 @@ def pair_info(message):
             min_max = func.find_min_max_price(pair)
             func.print_min_max_data(min_max, pair_inp, id, bot, dif.message_id, i)
     else:
-        bot.send_message(id, f"Я не знаю такой пары :(")
-
+        bot.send_message(id, f"Я не знаю такой пары:(\nВведите: 'Список пар', чтобы посмотреть список доступных валютных пар или введите 'Справка', чтобы получить полную информацию о пользованнии ботом")
 
 bot.polling(none_stop=True, interval=0)

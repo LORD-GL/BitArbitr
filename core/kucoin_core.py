@@ -10,18 +10,11 @@ client = Client(
     passphrase = ""
 )
 
-# price = client.get_ticker("BTC-USDT")
-
-# print(price['price'])
-
-def get_price(symbol):
+def get_price(symbol="BTC-USDT"):
     if "DAI-USDT" in symbol:
         symbol = "USDT-DAI"
+    data = client.get_ticker(symbol)
     try:
-        return float(client.get_ticker(symbol)['price'])
+        return float(data['price']), round(float(client.get_24hr_stats(symbol)['vol']), 2)
     except:
-        return -1
-
-
-# print(client.get_order_book("BTC-DAI"))
-# print(get_price("BTC-DAI"))
+        return -1, -1

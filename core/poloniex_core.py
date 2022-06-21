@@ -5,5 +5,6 @@ def get_price(base="BTC", quor="USDT"):
     try:
         ticker = polo.returnTicker()[quor + "_" + base]
     except:
-        return -1 
-    return float(ticker['last'])
+        return -1, -1
+    #print(ticker['quoteVolume'])
+    return float(ticker['last']), float(ticker['quoteVolume'])

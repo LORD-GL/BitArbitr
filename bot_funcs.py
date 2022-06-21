@@ -39,7 +39,7 @@ def find_min_max_price(pair_dict):
     
     dif = count_dif_percent(max_price, min_price)
     Exc = False
-    if dif < 1:
+    if dif < 1 or dif > 70:
         Exc = True
 
     return {
@@ -50,53 +50,40 @@ def find_min_max_price(pair_dict):
     "Exception" : Exc
     }
 
-def make_dict_ex_price(pair):
+def make_dict_ex_price(pair): # update or inf
     ex_price = {}
+    ex_vol = {}
     mes = ""
 
     ex_price['cur'] = pair
+    ex_vol['cur'] = pair
 
-    ex_price['Bybit'] = bybit.get_price(symbolInp="".join(pair)) #ETHUSDT
-    mes = "(Bybit)         | " + "/".join(pair) + ': ' + str(check_error(ex_price.get("Bybit"))) + "\n"
+    ex_price['Bybit'], ex_vol['Bybit'] = bybit.get_price(symbolInp="".join(pair)) #ETHUSDT, 11111
+    ex_price['Binance'], ex_vol['Binance'] = binance.get_price(symbol="".join(pair)) 
+    ex_price['Kucoin'], ex_vol['Kucoin'] = kucoin.get_price(symbol="-".join(pair))
+    ex_price['Huobi'], ex_vol['Huobi'] = huobi.get_price(symbol="".join(pair).lower())
+    ex_price['Coinbase'], ex_vol['Coinbase'] = coinbase.get_price(symbol="-".join(pair))
+    ex_price['FTX'], ex_vol['FTX'] = ftx.get_price(pair[0], pair[1])
+    ex_price['OKEX'], ex_vol['OKEX'] = okx.get_price(symbol="-".join(pair))
+    ex_price['Kraken'], ex_vol['Kraken'] = kraken.get_price(symbol="".join(pair))
+    ex_price['Phemex'], ex_vol['Phemex'] = phemex.get_price(symbol="".join(pair))
+    ex_price['Gate.io'], ex_vol['Gate.io'] = gateio.get_price(symbol="_".join(pair))
+    ex_price['LBank'], ex_vol['LBank'] = lbank.get_price(symbol="_".join(pair).lower())
+    ex_price['Bitfinex'], ex_vol['Bitfinex'] = bitfinex.get_price(pair[0].lower(), pair[1].lower())
+    
 
-    ex_price['Binance'] = binance.get_price(symbol="".join(pair)) 
-    mes += "(Binance)    | " + "/".join(pair) + ': ' + str(check_error(ex_price.get("Binance"))) + "\n"
-
-    ex_price['Kucoin'] = kucoin.get_price(symbol="-".join(pair))
-    mes += "(Kucoin)      | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Kucoin"))) + "\n"
-
-    ex_price['Huobi'] = huobi.get_price(symbol="".join(pair).lower())
-    mes += "(Huobi)       | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Huobi"))) + "\n"
-
-    # ex_price['Exmo'] = exmo.get_price(symbol="_".join(pair)) НЕТ ОБЪЕМОВ
-    # mes += "(Exmo) " + "/".join(pair) + ": " + str(ex_price.get("Exmo")) + "\n"
-
-    ex_price['Coinbase'] = coinbase.get_price(symbol="-".join(pair))
-    mes += "(Coinbase) | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Coinbase"))) + "\n"
-
-    ex_price['FTX'] = ftx.get_price(pair[0], pair[1])
-    mes += "(FTX)            | " + "/".join(pair) + ": " + str(check_error(ex_price.get("FTX"))) + "\n"
-
-    ex_price['OKEX'] = okx.get_price(symbol="-".join(pair))
-    mes += "(OKEX)        | " + "/".join(pair) + ": " + str(check_error(ex_price.get("OKEX"))) + "\n"
-
-    ex_price['Kraken'] = kraken.get_price(symbol="".join(pair))
-    mes += "(Kraken)     | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Kraken"))) + "\n"
-
-    ex_price['Phemex'] = phemex.get_price(symbol="".join(pair))
-    mes += "(Phemex)   | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Phemex"))) + "\n"
-
-    ex_price['Gate.io'] = gateio.get_price(symbol="_".join(pair))
-    mes += "(Gate.io)     | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Gate.io"))) + "\n"
-
-    ex_price['LBank'] = lbank.get_price(symbol="_".join(pair).lower())
-    mes += "(LBank)       | " + "/".join(pair) + ": " + str(check_error(ex_price.get("LBank"))) + "\n"
-
-    ex_price['Bitfinex'] = bitfinex.get_price(pair[0], pair[1])
-    mes += "(Bitfinex)    | " + "/".join(pair) + ": " + str(check_error(ex_price.get("Bitfinex"))) + "\n"
-
-    # ex_price['Poloniex'] = poloniex.get_price(pair[0], pair[1])
-    # mes += "(Poloniex) " + "/".join(pair) + ": " + str(ex_price.get("Poloniex")) + "\n"
+    mes += "(Bybit)         | " + str(check_error(ex_price.get("Bybit"))) + f" | Vol: {check_error(ex_vol['Bybit'])}\n"
+    mes += "(Binance)    | " + str(check_error(ex_price.get("Binance"))) + f" | Vol: {check_error(ex_vol['Binance'])}\n"
+    mes += "(Kucoin)      | " + str(check_error(ex_price.get("Kucoin"))) + f" | Vol: {check_error(ex_vol['Kucoin'])}\n"
+    mes += "(Huobi)       | " + str(check_error(ex_price.get("Huobi"))) + f" | Vol: {check_error(ex_vol['Huobi'])}\n"
+    mes += "(Coinbase) | " + str(check_error(ex_price.get("Coinbase"))) + f" | Vol: {check_error(ex_vol['Coinbase'])}\n"
+    mes += "(FTX)            | " + str(check_error(ex_price.get("FTX"))) + f" | Vol: {check_error(ex_vol['FTX'])}\n"
+    mes += "(OKEX)        | " + str(check_error(ex_price.get("OKEX"))) + f" | Vol: {check_error(ex_vol['OKEX'])}\n"
+    mes += "(Kraken)     | " + str(check_error(ex_price.get("Kraken"))) + f" | Vol: {check_error(ex_vol['Kraken'])}\n"
+    mes += "(Phemex)   | " + str(check_error(ex_price.get("Phemex"))) + f" | Vol: {check_error(ex_vol['Phemex'])}\n"
+    mes += "(Gate.io)     | " + str(check_error(ex_price.get("Gate.io"))) + f" | Vol: {check_error(ex_vol['Gate.io'])}\n"
+    mes += "(LBank)       | " + str(check_error(ex_price.get("LBank"))) + f" | Vol: {check_error(ex_vol['LBank'])}\n"
+    mes += "(Bitfinex)    | " + str(check_error(ex_price.get("Bitfinex"))) + f" | Vol: {check_error(ex_vol['Bitfinex'])}\n"
 
     return ex_price, mes
 
@@ -141,7 +128,7 @@ def private(func):
         else:
             print(f"Access refused for {args[0].from_user.username}", end = " | ")
             print(strftime('%d %b %Y %H:%M:%S (+0)', gmtime()))
-            bot.send_message(args[0].chat.id, "Sorry, It's private bot, buy an access to use it! \n(Купите АБОНЕМЕНТ для доступа)")
+            bot.send_message(args[0].chat.id, "Sorry, It's private bot, buy an access to use it! \n(Купите АБОНЕМЕНТ для доступа или получити БЕСПЛАТНЫЙ пробный период, подробности на канале: https://t.me/bitarbitr)")
     return wrapper
 
 def admin_add_user(username, id):
