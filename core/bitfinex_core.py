@@ -1,6 +1,7 @@
 import requests
 import json 
-# tBTCUSDT
+import time
+# tBTCUSDT https://api.bitfinex.com/v1/pubticker/{symbol}
 
 p_list = [
   "btcusd", "ltcusd","ltcbtc","ethusd", "ethbtc",
@@ -264,14 +265,20 @@ p_list = [
   "rlyust",
   ]
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
 def get_price(base="btc", quor='usdt'):
     if "usdc" in quor or "dai" in quor:
         return -1, -1
     elif "usdt" in quor:
         quor = "ust"
+<<<<<<< HEAD
     elif base == 'GST' or base == "GNO" or base == "BTG":
         return -1, -1
+=======
+>>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
     if base+quor in p_list:
         resp = requests.get(f"https://api.bitfinex.com/v1/pubticker/{base+quor}").json()
     else:
@@ -279,4 +286,8 @@ def get_price(base="btc", quor='usdt'):
     try:
         return float(resp['last_price']), round( float(resp['volume']), 2)
     except:
+<<<<<<< HEAD
         return -1, -1
+=======
+        return -1, -1
+>>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868

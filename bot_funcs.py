@@ -9,7 +9,7 @@ from core import lbank_core as lbank, bitfinex_core as bitfinex # ONLY USDT
 # import poloniex_core as poloniex
 
 from conf import *
-from time import gmtime, strftime
+from time import gmtime, strftime, time
 
 
 def check_error(price):
@@ -50,6 +50,11 @@ def find_min_max_price(pair_dict):
     "Exception" : Exc
     }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
 def make_dict_ex_price(pair): # update or inf
     ex_price = {}
     ex_vol = {}
@@ -58,6 +63,7 @@ def make_dict_ex_price(pair): # update or inf
     ex_price['cur'] = pair
     ex_vol['cur'] = pair
 
+<<<<<<< HEAD
     ex_price['Bybit'], ex_vol['Bybit'] = bybit.get_price(symbolInp="".join(pair)) #ETHUSDT, 11111
     ex_price['Binance'], ex_vol['Binance'] = binance.get_price(symbol="".join(pair)) 
     ex_price['Kucoin'], ex_vol['Kucoin'] = kucoin.get_price(symbol="-".join(pair))
@@ -70,6 +76,44 @@ def make_dict_ex_price(pair): # update or inf
     ex_price['Gate.io'], ex_vol['Gate.io'] = gateio.get_price(symbol="_".join(pair))
     ex_price['LBank'], ex_vol['LBank'] = lbank.get_price(symbol="_".join(pair).lower())
     ex_price['Bitfinex'], ex_vol['Bitfinex'] = bitfinex.get_price(pair[0].lower(), pair[1].lower())
+=======
+    start = time()
+    ex_price['Bybit'], ex_vol['Bybit'] = bybit.get_price(symbolInp="".join(pair)) #ETHUSDT, 11111
+    print("Bybit", time() - start)
+    start = time()
+    ex_price['Binance'], ex_vol['Binance'] = binance.get_price(symbol="".join(pair)) 
+    print("Binance", time() - start)
+    start = time()
+    ex_price['Kucoin'], ex_vol['Kucoin'] = kucoin.get_price(symbol="-".join(pair))
+    print("Kucoin", time() - start)
+    start = time()
+    ex_price['Huobi'], ex_vol['Huobi'] = huobi.get_price(symbol="".join(pair).lower())
+    print("Huobi", time() - start)
+    start = time()
+    ex_price['Coinbase'], ex_vol['Coinbase'] = coinbase.get_price(symbol="-".join(pair))
+    print("Coinbase", time() - start)
+    start = time()
+    ex_price['FTX'], ex_vol['FTX'] = ftx.get_price(pair[0], pair[1])
+    print("FTX", time() - start)
+    start = time()
+    ex_price['OKEX'], ex_vol['OKEX'] = okx.get_price(symbol="-".join(pair))
+    print("OKEX", time() - start)
+    start = time()
+    ex_price['Kraken'], ex_vol['Kraken'] = kraken.get_price(symbol="".join(pair))
+    print("Kraken", time() - start)
+    start = time()
+    ex_price['Phemex'], ex_vol['Phemex'] = phemex.get_price(symbol="".join(pair))
+    print("Phemex", time() - start)
+    start = time()
+    ex_price['Gate.io'], ex_vol['Gate.io'] = gateio.get_price(symbol="_".join(pair))
+    print("Gate", time() - start)
+    start = time()
+    ex_price['LBank'], ex_vol['LBank'] = lbank.get_price(symbol="_".join(pair).lower())
+    print("LBank", time() - start)
+    start = time()
+    ex_price['Bitfinex'], ex_vol['Bitfinex'] = bitfinex.get_price(pair[0].lower(), pair[1].lower())
+    print("Bitfinex", time() - start)
+>>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
     
 
     mes += "(Bybit)         | " + str(check_error(ex_price.get("Bybit"))) + f" | Vol: {check_error(ex_vol['Bybit'])}\n"
@@ -134,7 +178,7 @@ def private(func):
 def admin_add_user(username, id):
     if username not in USERNAME_LIST:
         cwd = os.getcwd()
-        fileD = open(cwd + '/usernames.json', 'w') # '\\main\\' + 
+        fileD = open(cwd + '\\usernames.json', 'w') # '\\main\\' + 
         USERNAME_LIST.append(username)
         json_list = json.dumps({"data" : USERNAME_LIST})
         fileD.write(json_list)
@@ -158,7 +202,7 @@ def admin_getinfo(username, id):
 def admin_delete_user(username, id):
     if username in USERNAME_LIST:
         cwd = os.getcwd()
-        fileD = open(cwd + '/usernames.json', 'w') # '\\main\\' + 
+        fileD = open(cwd + '\\usernames.json', 'w') # '\\main\\' + 
         USERNAME_LIST.remove(username)
         json_list = json.dumps({"data" : USERNAME_LIST})
         fileD.write(json_list)

@@ -53,7 +53,11 @@ def update(message):
 @bot.message_handler(func = lambda message: func.check_admin(message) == True)
 @func.private
 def admin(message):
+<<<<<<< HEAD
     inf = "FORM: admin method [username]\nmathod - method to do:\n  add - add new user to access to bot\n   userslist - show all users who have access to bot\n     getinfo - get information about user\n  delete - delete user\nExemple: admin 12345 add me"
+=======
+    inf = "FORM: admin method [username]\nmathod - method to do:\n  add - add new user to access to bot\n   userslist - show all users who have access to bot\n     getinfo - get information about user\nExemple: admin 12345 add me"
+>>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
     data = message.text.split(" ")
     if len(data) == 1 or data[1] == "info":
         bot.send_message(message.chat.id, inf)
@@ -74,6 +78,7 @@ def admin(message):
         print(f"User have tried access to the admin panel with without permission", end = " | ")
         print(strftime('%d %b %Y %H:%M:%S (+0)', gmtime()))
         bot.send_message(message.chat.id, "Permission Error")
+<<<<<<< HEAD
 
 @bot.message_handler(func = lambda message: message.text == "Список пар")
 @func.private
@@ -84,6 +89,8 @@ def pair_list(message):
         mes += "/".join(pairs[i-1]) + f"({i})\n"
     mes += f"Всего: {len(pairs)}\n"
     bot.send_message(message.chat.id, mes)
+=======
+>>>>>>> 0b8050ac48e11cc04560f6d039510486349dd868
 
 @bot.message_handler(content_types=["text"])
 @func.private
