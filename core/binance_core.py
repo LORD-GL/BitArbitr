@@ -16,7 +16,7 @@ def get_price(symbol="BTCUSDT"):
                 return -1, -1
         resp = requests.get(f"https://api.binance.com/api/v1/ticker/24hr?symbol={symbol}").json()
         try:
-                if resp['lastid'] == -1: return -1, -1
+                if resp['lastId'] == -1: return -1, -1
                 return float(resp['lastPrice']), round(float(resp['volume']), 2)
         except:
                 return -1, -1
