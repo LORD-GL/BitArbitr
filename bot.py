@@ -111,4 +111,10 @@ def pair_info(message):
     else:
         bot.send_message(id, f"Я не знаю такой пары:(\nВведите: 'Список пар', чтобы посмотреть список доступных валютных пар или введите 'Справка', чтобы получить полную информацию о пользованнии ботом")
 
-bot.polling(none_stop=True, interval=0)
+while True:
+    try:
+       bot.polling(none_stop=True, interval=0)
+    except Exception as e:
+        print("Connection Error", e)
+        print(strftime('%d %b %Y %H:%M:%S (+0)', gmtime()))
+        sleep(10)

@@ -1,13 +1,13 @@
-# import requests
-# import json
-# import hmac
+import requests
+import json
 
-# api_key = "sjFWgTBLamXRf2H7DJQbxn4HLGNYdX"
-# secret = "ZBjufrMoew3eH2BC9ftkSAJNgFWEbRx7uXNpYHATxMgnDzb6aG"
-# code = "btcusdt"
-# resp = requests.get(f"https://api.hoolgd.com/pairs/{code}/ticker?client_id={api_key}&client_key={secret}")
-# print(resp)
+pairs_hoo = []
+resp_hoo = requests.get("https://api.hoolgd.com/open/v1/tickers/market").json()['data']
+for i in resp_hoo:
+    pairs_hoo.append(i['symbol'])
 
-# sign = hmac.New(client_key, sign_str, sha256)
-# https://github.com/chaince/apidocs/blob/master/restful-pairs.md#get-ticker
-# https://hoo.com/docs-en/#connection-guide
+def get_price(symbol="BTC-USDT"):
+    if symbol not in pairs_hoo:
+        return -1, -1
+    resp = requests.get(f"https://api.hoolgd.com/open/v1/tickers/market?symbol={symbol}").json()['data'][0]
+    return float(resp['price']), round(float(resp['volume']), 2)
