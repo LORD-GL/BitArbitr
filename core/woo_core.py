@@ -15,7 +15,13 @@ for i in resp_w:
 def get_price(symbol="SPOT_BTC_USDT"):
     if symbol not in list_woo:
         return -1, -1
-    resp = requests.get("https://api.woo.org/v1/kline", header=header).json()
+    header = {
+"Content-Type" : "application/x-www-form-urlencoded",
+"x-api-key" : "xyXaup1o2mJaBhBdDrKzpQ==",
+"x-api-signature" : "VSUL6V6E6I7VAMAJPNNP42OQEUYC"
+}
+    resp = requests.get("https://api.woo.org/v1/kline", headers=header).json()
     print(resp)
 
+get_price()
     

@@ -60,7 +60,7 @@ def make_dict_ex_price(pair): # update or inf
     ex_price['cur'] = pair
     ex_vol['cur'] = pair
 
-    ex_price['Bybit'], ex_vol['Bybit'] = bybit.get_price(symbolInp="".join(pair)) #ETHUSDT, 11111
+    ex_price['Bybit'], ex_vol['Bybit'] = bybit.get_price(symbol="".join(pair)) #ETHUSDT, 11111
     ex_price['Binance'], ex_vol['Binance'] = binance.get_price(symbol="".join(pair)) 
     ex_price['Kucoin'], ex_vol['Kucoin'] = kucoin.get_price(symbol="-".join(pair))
     ex_price['Huobi'], ex_vol['Huobi'] = huobi.get_price(symbol="".join(pair).lower())
