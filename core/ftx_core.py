@@ -13,6 +13,10 @@ def get_price(base_cur='BTC', quote_cur='USDT'):
     except:
         return -1, -1
     if ans['success'] == True:
-        return float(ans['result']['price']), round( float(ans['result']['volumeUsd24h']) / float(ans['result']['price']), 2)
+        try:
+            return float(ans['result']['price']), round( float(ans['result']['volumeUsd24h']) / float(ans['result']['price']), 2)
+        except:
+            return -1, -1
     else:
         return -1, -1
+

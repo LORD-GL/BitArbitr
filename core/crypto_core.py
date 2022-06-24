@@ -13,6 +13,9 @@ def get_price(symbol="BTC_USDT"):
         return -1, -1
     resp = requests.get(f"https://api.crypto.com/v2/public/get-ticker?instrument_name={symbol}").json()['result']['data']
     try:
+        print(resp)
         return float(resp['a']), round(float(resp['v']), 2)
     except:
         return -1, -1
+
+get_price()

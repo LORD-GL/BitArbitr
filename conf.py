@@ -82,5 +82,9 @@ pairs = [
         ["CVX", "USDT"], ["IOST", "USDT"],
         ["COMP", "USDT"], ["IOTX", "USDT"],
         ["KNC", "USDT"], ["SRM", "USDT"],
-        ["ICX", "USDT"], ["TFUEL", "USDT"],    
+        ["ICX", "USDT"], ["TFUEL", "USDT"],
+        ###################################### ORDERED
+        ["LUNC", "USDT"], ["LUNC", "USDC"],
+        ["FLOKI", "USDT"], ["BABYDOGE", "USDT"],
+        ["SPS", "USDT"],
 ]

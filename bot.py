@@ -2,17 +2,17 @@ from conf import *
 from time import time, gmtime, strftime, sleep
 from threading import Thread
 from queue import Queue
-# exc = True
-# while exc:
-#     try:
-#         import bot_funcs as func
-#         print("Connected!")
-#         exc = False
-#     except:
-#         print(f"Connection problems! {strftime('%d %b %Y %H:%M:%S (+0)', gmtime())}")
-#         sleep(15)
-#         pass
-import bot_funcs as func
+exc = True
+while exc:
+    try:
+        import bot_funcs as func
+        print("Connected!")
+        exc = False
+    except:
+        print(f"Connection problems! {strftime('%d %b %Y %H:%M:%S (+0)', gmtime())}")
+        sleep(15)
+        pass
+# import bot_funcs as func
 
 @bot.message_handler(func = lambda message: message.text == 'Справка')
 @bot.message_handler(commands=["start"])
@@ -85,7 +85,7 @@ def admin(message):
         print(strftime('%d %b %Y %H:%M:%S (+0)', gmtime()))
         bot.send_message(message.chat.id, "Permission Error")
 
-@bot.message_handler(func = lambda message: message.text == "Список пар")
+@bot.message_handler(func = lambda message: message.text.lower() == "cписок пар")
 @func.private
 def pair_list(message):
     mes = "Отсортированный по алфавиту список пар:\n"

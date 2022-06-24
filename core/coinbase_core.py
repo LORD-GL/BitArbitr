@@ -6,7 +6,7 @@ client = cbpro.PublicClient( #AuthenticatedClient
 
 #print(client.get_product_ticker('BTC-USDT')['price'])
 
-def get_price(symbol="ETH-USDT"):
+def get_price(symbol="BTC-USDT"):
     try:
         data = client.get_product_ticker(symbol)
     except:

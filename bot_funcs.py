@@ -90,7 +90,7 @@ def make_dict_ex_price(pair): # update or inf
     mes += "(Gate.io)     | " + str(check_error(ex_price.get("Gate.io"))) + f" | Vol: {check_error(ex_vol['Gate.io'])}\n"
     mes += "(LBank)       | " + str(check_error(ex_price.get("LBank"))) + f" | Vol: {check_error(ex_vol['LBank'])}\n"
     mes += "(Bitfinex)    | " + str(check_error(ex_price.get("Bitfinex"))) + f" | Vol: {check_error(ex_vol['Bitfinex'])}\n"
-    mes += "(Genimi)     | " + str(check_error(ex_price.get("Genimi"))) + f" | Vol: {check_error(ex_vol['Genimi'])}\n"
+    mes += "(Gemini)     | " + str(check_error(ex_price.get("Genimi"))) + f" | Vol: {check_error(ex_vol['Genimi'])}\n"
     mes += "(MEXC)        | " + str(check_error(ex_price.get("MEXC"))) + f" | Vol: {check_error(ex_vol['MEXC'])}\n"
     mes += "(Crypto.com)| " + str(check_error(ex_price.get("Crypto.com"))) + f" | Vol: {check_error(ex_vol['Crypto.com'])}\n"
     mes += "(Hoo)            | " + str(check_error(ex_price.get("Hoo"))) + f" | Vol: {check_error(ex_vol['Hoo'])}\n"
@@ -139,7 +139,7 @@ def private(func):
         else:
             print(f"Access refused for {args[0].from_user.username}", end = " | ")
             print(strftime('%d %b %Y %H:%M:%S (+0)', gmtime()))
-            bot.send_message(args[0].chat.id, "Sorry, It's private bot, buy an access to use it! \n(Купите АБОНЕМЕНТ для доступа или получити БЕСПЛАТНЫЙ пробный период, подробности на канале: https://t.me/bitarbitr)")
+            bot.send_message(args[0].chat.id, "Это приватный бот!\n(Купите АБОНЕМЕНТ для доступа или получити БЕСПЛАТНЫЙ пробный период, подробности на канале: https://t.me/bitarbitr)")
     return wrapper
 
 def admin_add_user(username, id):
