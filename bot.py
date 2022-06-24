@@ -53,11 +53,11 @@ def update(message):
             if list_data[i]['dif_percent'] < list_data[i+1]['dif_percent']:
                 list_data[i], list_data[i+1] = list_data[i+1], list_data[i]
 
+    print(f"Working time with {THREAD_COUNT} treads and {len(pairs)} pairs is {time() - start_time}")
+
     for i in range(len(list_data)):
         func.print_min_max_data(list_data[i], list_data[i]['cur'], id, bot)
 
-
-    print(f"Working time with {THREAD_COUNT} treads and {len(pairs)} pairs is {time() - start_time}")
 
 # admin method username
 @bot.message_handler(func = lambda message: func.check_admin(message) == True)
@@ -85,7 +85,7 @@ def admin(message):
         print(strftime('%d %b %Y %H:%M:%S (+0)', gmtime()))
         bot.send_message(message.chat.id, "Permission Error")
 
-@bot.message_handler(func = lambda message: message.text.lower() == "cписок пар")
+@bot.message_handler(func = lambda message: message.text == "Список пар")
 @func.private
 def pair_list(message):
     mes = "Отсортированный по алфавиту список пар:\n"

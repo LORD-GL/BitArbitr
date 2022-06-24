@@ -4,10 +4,10 @@ from core import kucoin_core as kucoin, huobi_core as huobi
 from core import coinbase_core as coinbase, ftx_core as ftx
 from core import okex_core as okx, kraken_core as kraken
 from core import phemex_core as phemex, gateio_core as gateio # НЕПОНЯТНАЯ ОШИБКА
-from core import hoo_core as hoo # woo_core as woo
+from core import hoo_core as hoo, aex_core as aex # woo_core as woo
 from core import lbank_core as lbank, bitfinex_core as bitfinex # ONLY USDT
 # import poloniex_core as poloniex
-from core import genimi_core as genimi, aex_core as aex
+# from core import genimi_core as genimi
 from core import mexc_core as mexc, crypto_core as crypto
 
 from conf import *
@@ -72,7 +72,7 @@ def make_dict_ex_price(pair): # update or inf
     ex_price['Gate.io'], ex_vol['Gate.io'] = gateio.get_price(symbol="_".join(pair))
     ex_price['LBank'], ex_vol['LBank'] = lbank.get_price(symbol="_".join(pair).lower())
     ex_price['Bitfinex'], ex_vol['Bitfinex'] = bitfinex.get_price(pair[0].lower(), pair[1].lower())
-    ex_price['Genimi'], ex_vol['Genimi'] = genimi.get_price(pair[0].lower(), pair[1].lower()) # NONE
+    #ex_price['Genimi'], ex_vol['Genimi'] = genimi.get_price(pair[0].lower(), pair[1].lower()) # NONE
     ex_price['MEXC'], ex_vol['MEXC'] = mexc.get_price(symbol="".join(pair))
     ex_price['Crypto.com'], ex_vol['Crypto.com'] = crypto.get_price(symbol="_".join(pair))
     ex_price['Hoo'], ex_vol['Hoo'] = hoo.get_price(symbol="-".join(pair))
@@ -90,7 +90,7 @@ def make_dict_ex_price(pair): # update or inf
     mes += "(Gate.io)     | " + str(check_error(ex_price.get("Gate.io"))) + f" | Vol: {check_error(ex_vol['Gate.io'])}\n"
     mes += "(LBank)       | " + str(check_error(ex_price.get("LBank"))) + f" | Vol: {check_error(ex_vol['LBank'])}\n"
     mes += "(Bitfinex)    | " + str(check_error(ex_price.get("Bitfinex"))) + f" | Vol: {check_error(ex_vol['Bitfinex'])}\n"
-    mes += "(Gemini)     | " + str(check_error(ex_price.get("Genimi"))) + f" | Vol: {check_error(ex_vol['Genimi'])}\n"
+    #mes += "(Gemini)     | " + str(check_error(ex_price.get("Genimi"))) + f" | Vol: {check_error(ex_vol['Genimi'])}\n"
     mes += "(MEXC)        | " + str(check_error(ex_price.get("MEXC"))) + f" | Vol: {check_error(ex_vol['MEXC'])}\n"
     mes += "(Crypto.com)| " + str(check_error(ex_price.get("Crypto.com"))) + f" | Vol: {check_error(ex_vol['Crypto.com'])}\n"
     mes += "(Hoo)            | " + str(check_error(ex_price.get("Hoo"))) + f" | Vol: {check_error(ex_vol['Hoo'])}\n"

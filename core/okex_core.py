@@ -10,6 +10,9 @@ def get_price(symbol='BTC-USDT'):
     except:
         return -1, -1 
     if ticker['code'] == '0':
-        return float(ticker['data'][0]['last']), round(float(ticker['data'][0]['vol24h']), 2)
+        try:
+            return float(ticker['data'][0]['last']), round(float(ticker['data'][0]['vol24h']), 2)
+        except:
+            return -1, -1
     else:
         return -1, -1

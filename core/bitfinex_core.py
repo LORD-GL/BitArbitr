@@ -256,8 +256,8 @@ p_list = [
   "b2must",
   "stgusd",
   "stgust",
-  "gmtusd",
-  "gmtust",
+#   "gmtusd",
+#   "gmtust",
   "gstusd",
   "gstust",
   "vraust",
@@ -277,6 +277,6 @@ def get_price(base="btc", quor='usdt'):
     else:
         return -1, -1
     try:
-        return float(resp['mid']), round( float(resp['volume']), 2)
+        return float(resp['last_price']), round( float(resp['volume']), 2)
     except:
         return -1, -1
