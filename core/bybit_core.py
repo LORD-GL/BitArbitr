@@ -16,11 +16,11 @@ for i in resp_bybit:
 def get_price(symbol="BTCUSDT"):
     if symbol not in pairs_bybit:
         return -1, -1
-    if "CVX" in symbolInp:
+    if "CVX" in symbol:
         return -1, -1
-    elif "GMT" in symbolInp:
+    elif "GMT" in symbol:
         return -1, -1
-    elif "GST" in symbolInp:
+    elif "GST" in symbol:
         return -1, -1
     resp = requests.get(f"https://api.bybit.com/spot/quote/v1/ticker/24hr?symbol={symbol}").json()['result']
     return float(resp['lastPrice']), round(float(resp['volume']), 2)
