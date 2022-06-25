@@ -36,3 +36,4 @@ def get_price(symbol="btcusdt"):
         if i['symbol'] == symbol:
             return float(i['close']), round(float(i['amount']), 2)
     return -1, -1
+

@@ -19,3 +19,4 @@ def get_price(symbol="btc_usdt"):
         return float(resp['data'][0]['ticker']['latest']), round(float(resp['data'][0]['ticker']['vol']), 2)
     except:
         return -1, -1
+        

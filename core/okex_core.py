@@ -16,3 +16,4 @@ def get_price(symbol='BTC-USDT'):
             return -1, -1
     else:
         return -1, -1
+

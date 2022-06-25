@@ -12,3 +12,4 @@ def get_price(symbol="BTC-USDT"):
     elif "NFT" in symbol or "GMT" in symbol or "XCH" in symbol: return -1, -1
     resp = requests.get(f"https://api.hoolgd.com/open/v1/tickers/market?symbol={symbol}").json()['data'][0]
     return float(resp['price']), round(float(resp['volume']), 2)
+
