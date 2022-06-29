@@ -27,7 +27,10 @@ def get_price(symbol="BTC_USDT"):
         return -1, -1
     elif "USDC" in symbol or "DAI" in symbol:
         return -1, -1
-    ans = requests.get(f"https://api.gateio.ws/api/v4/spot/tickers?currency_pair={symbol}").json()[0]
+    try:
+        ans = requests.get(f"https://api.gateio.ws/api/v4/spot/tickers?currency_pair={symbol}").json()[0]
+    except:
+        return -1, -1
     return float(ans['last']), round(float(ans['base_volume']), 2)
     
 # start = time.time()

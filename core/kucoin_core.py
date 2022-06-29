@@ -13,7 +13,10 @@ client = Client(
 def get_price(symbol="BTC-USDT"):
     if "DAI-USDT" in symbol:
         symbol = "USDT-DAI"
-    data = client.get_ticker(symbol)
+    try:
+        data = client.get_ticker(symbol)
+    except:
+        return -1,-1
     try:
         return float(data['price']), round(float(client.get_24hr_stats(symbol)['vol']), 2)
     except:
