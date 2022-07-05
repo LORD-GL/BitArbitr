@@ -95,9 +95,11 @@ pairs = [
         ["PLA", "USDT"], ["BNT", "USDT"],       ["CFX", "USDT"], ["GAL", "USDT"],
         ["DYDX", "USDT"], ["GMX", "USDT"],      ["VGX", "USDT"], ["COTI", "USDT"],
         ###################################### ORDERED
-        ["LUNC", "USDT"], ["LUNC", "USDC"],     ["SNT", "ETH"],
-        ["FLOKI", "USDT"], ["BABYDOGE", "USDT"],["SNT", "USDT"], 
-        ["SPS", "USDT"], ["SNT", "BTC"],
+        ["LUNC", "USDT"], ["LUNC", "USDC"],     ["SNT", "ETH"], ["UFT", "USDT"],
+        ["FLOKI", "USDT"], ["BABYDOGE", "USDT"],["SNT", "USDT"], ["NMR", "USDT"],
+        ["SPS", "USDT"], ["SNT", "BTC"],        ["UFT", "ETH"], ["NMR", "ETH"],
+        ["NMR", "BTC"], ["REQ", "USDT"],        ["REQ", "BTC"], ["REQ", "ETH"],
+        ["TORN", "USDT"], ["RLC", "USDT"],
         ###################################### COIN->COIN
         ["BNB", "ETH"], ["BNB", "BTC"],     ["XRP", "ETH"],
         ["ADA", "BTC"], ["ADA", "ETH"],     ["SOL", "BTC"], ["SOL", "ETH"],
