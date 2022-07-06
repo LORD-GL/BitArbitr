@@ -25,39 +25,14 @@ def start(message):
 def update(message):
     id = message.chat.id
     bot.send_message(id, "Мы показываем только пары с разницой > 1%")
-    bot.send_message(id, "Пожалуйста подождите, мы получаем данные с бирж...\n(Это может занять некоторое время)")
-    list_data = []
+    bot.send_message(id, "Пожалуйста подождите, мы получаем данные с бирж...\n(Данные обновляются каждые 30 секунд)")
 
-    start_time = time()
-
-    queue = Queue()
-    result_queue = Queue()
-    trash_queue = Queue()
-
-    for i in pairs:
-        queue.put(i)
-
-    for i in range(THREAD_COUNT):
-        thread = Thread(target=func.run, args=(queue, result_queue, trash_queue))
-        thread.daemon = True
-        thread.start()
-
-    queue.join()
-
-    while not result_queue.empty():
-        data = result_queue.get_nowait()
-        list_data.append(data)
-    
-    for _ in range(len(list_data)-1):
-        for i in range(len(list_data)-1):
-            if list_data[i]['dif_percent'] < list_data[i+1]['dif_percent']:
-                list_data[i], list_data[i+1] = list_data[i+1], list_data[i]
-
-    print(f"Working time with {THREAD_COUNT} treads and {len(pairs)} pairs is {time() - start_time}")
-
-    for i in range(len(list_data)):
-        func.print_min_max_data(list_data[i], list_data[i]['cur'], id, bot)
-
+    cwd = os.getcwd()
+    fileD = open(cwd + '\\data.txt', 'r')
+    data = fileD.read().split("@@@@@@@")
+    fileD.close()
+    for i in range(len(data)-1):
+        bot.send_message(id, data[i])
 
 # admin method username
 @bot.message_handler(func = lambda message: func.check_admin(message) == True)
@@ -78,6 +53,8 @@ def admin(message):
             func.admin_getinfo(data[2], message.chat.id)
         elif data[1] == "delete" and len(data) == 3:
             func.admin_delete_user(data[2], message.chat.id)
+        elif data[1] == "update":
+            func.update_iterator(message.chat.id, bot)
         else:
             bot.send_message(message.chat.id, "Sorry, i don't know this method (send: admin info to see more)")
     else:

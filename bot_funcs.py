@@ -11,8 +11,10 @@ from core import lbank_core as lbank, bitfinex_core as bitfinex # ONLY USDT
 from core import mexc_core as mexc, crypto_core as crypto
 
 from conf import *
-from time import gmtime, strftime, time
+from time import gmtime, strftime, time, sleep
 
+from threading import Thread
+from queue import Queue
 
 def check_error(price):
     if price == -1:
@@ -178,3 +180,51 @@ def admin_delete_user(username, id):
     else:
         bot.send_message(id, f"There is no user with {username} username. Sorry, i can't delete him")
 
+def load_min_max_data(data, curr, id, bot, msg_id=0, iter=0):
+    mes = ""
+    mes += f"{'/'.join(curr)}:\n"
+    mes += f"Max price: {data['max']['price']} | {data['max']['exchanger']}\n"
+    mes += f"Min price: {data['min']['price']} | {data['min']['exchanger']}\n"
+    #mes += f"Difference: {count_dif_percent(min_max['max']['price'], min_max['min']['price'])}\n"
+    mes += f"Spread: {data['dif_percent']}%\n"
+    mes += "@@@@@@@"
+    return mes
+
+def update_iterator(id, bot):
+    while True:
+        list_data = []
+        start_time = time()
+        queue = Queue()
+        result_queue = Queue()
+        trash_queue = Queue()
+        data_to_load = ""
+
+        for i in pairs:
+            queue.put(i)
+
+        for i in range(THREAD_COUNT):
+            thread = Thread(target=run, args=(queue, result_queue, trash_queue))
+            thread.daemon = True
+            thread.start()
+
+        queue.join()
+
+        while not result_queue.empty():
+            data = result_queue.get_nowait()
+            list_data.append(data)
+        
+        for _ in range(len(list_data)-1):
+            for i in range(len(list_data)-1):
+                if list_data[i]['dif_percent'] < list_data[i+1]['dif_percent']:
+                    list_data[i], list_data[i+1] = list_data[i+1], list_data[i]
+
+        for i in range(len(list_data)):
+            #print_min_max_data(list_data[i], list_data[i]['cur'], id, bot)
+            data_to_load += load_min_max_data(list_data[i], list_data[i]['cur'], id, bot)
+ 
+        cwd = os.getcwd()
+        fileD = open(cwd + '\\data.txt', 'w') # '\\main\\' +
+        fileD.write("")
+        fileD.write(data_to_load)
+        fileD.close()
+        print(f"Updated with {time()-start_time} seconds")
