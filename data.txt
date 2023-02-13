@@ -182,4 +182,188 @@ Spread: 1.02%
 Max price: 5.98e-06 | Coinbase
 Min price: 5.92e-06 | Binance
 Spread: 1.0%
+@@@@@@@OHM/USDT:
+Max price: 50.053 | Gate.io
+Min price: 43.97 | MEXC
+Spread: 12.15%
+@@@@@@@IOTA/USDT:
+Max price: 0.3 | Gate.io
+Min price: 0.2681 | Binance
+Spread: 10.63%
+@@@@@@@MINA/USDT:
+Max price: 0.64535 | Gate.io
+Min price: 0.6274 | LBank
+Spread: 2.78%
+@@@@@@@OMG/USDT:
+Max price: 1.81336 | MEXC
+Min price: 1.7677 | Gate.io
+Spread: 2.52%
+@@@@@@@WBTC/USDT:
+Max price: 19912.67 | Crypto.com
+Min price: 19417.53 | Gate.io
+Spread: 2.49%
+@@@@@@@ORBS/USDT:
+Max price: 0.041757 | Gate.io
+Min price: 0.040753 | Phemex
+Spread: 2.4%
+@@@@@@@NEXO/USDT:
+Max price: 0.5979 | Huobi
+Min price: 0.5837 | Gate.io
+Spread: 2.37%
+@@@@@@@WRX/USDT:
+Max price: 0.2281 | Kucoin
+Min price: 0.2228 | Gate.io
+Spread: 2.32%
+@@@@@@@BAL/USDT:
+Max price: 4.913 | Kucoin
+Min price: 4.8022 | Gate.io
+Spread: 2.26%
+@@@@@@@OP/USDT:
+Max price: 0.54 | LBank
+Min price: 0.5296 | Gate.io
+Spread: 1.93%
+@@@@@@@QNT/USDT:
+Max price: 60.69 | Phemex
+Min price: 59.523 | Gate.io
+Spread: 1.92%
+@@@@@@@GLM/USDT:
+Max price: 0.2404 | OKEX
+Min price: 0.2358 | Gate.io
+Spread: 1.91%
+@@@@@@@FEI/USDT:
+Max price: 1.0027 | Gate.io
+Min price: 0.9837 | LBank
+Spread: 1.89%
+@@@@@@@UFT/ETH:
+Max price: 0.0002051 | Gate.io
+Min price: 0.0002013 | Binance
+Spread: 1.85%
+@@@@@@@NEO/USDT:
+Max price: 8.33 | Binance
+Min price: 8.18 | LBank
+Spread: 1.8%
+@@@@@@@LUNC/USDC:
+Max price: 0.000113 | Crypto.com
+Min price: 0.00011097 | Bybit
+Spread: 1.8%
+@@@@@@@KNC/USDT:
+Max price: 1.278 | Kucoin
+Min price: 1.2573 | Gate.io
+Spread: 1.62%
+@@@@@@@EOS/USDC:
+Max price: 0.953 | Binance
+Min price: 0.938 | LBank
+Spread: 1.57%
+@@@@@@@XEC/USDT:
+Max price: 4.148e-05 | Bybit
+Min price: 4.085e-05 | MEXC
+Spread: 1.52%
+@@@@@@@SLP/USDT:
+Max price: 0.003837 | Bybit
+Min price: 0.00378 | Binance
+Spread: 1.49%
+@@@@@@@XNO/USDT:
+Max price: 0.8261 | Kucoin
+Min price: 0.8139 | OKEX
+Spread: 1.48%
+@@@@@@@AVAX/USDT:
+Max price: 17.231 | Kucoin
+Min price: 16.9777 | LBank
+Spread: 1.47%
+@@@@@@@POLY/USDT:
+Max price: 0.1912 | Binance
+Min price: 0.1884 | Gate.io
+Spread: 1.46%
+@@@@@@@SC/USDT:
+Max price: 0.003789 | OKEX
+Min price: 0.003736 | Gate.io
+Spread: 1.4%
+@@@@@@@COMP/USDT:
+Max price: 46.25 | Phemex
+Min price: 45.609 | Gate.io
+Spread: 1.39%
+@@@@@@@COTI/USDT:
+Max price: 0.0939 | Binance
+Min price: 0.092675 | Kucoin
+Spread: 1.3%
+@@@@@@@RUNE/USDT:
+Max price: 2.0814 | Kucoin
+Min price: 2.0548 | Gate.io
+Spread: 1.28%
+@@@@@@@FTT/USDT:
+Max price: 25.032 | Gate.io
+Min price: 24.722 | Bitfinex
+Spread: 1.24%
+@@@@@@@DCR/USDT:
+Max price: 21.9503 | Bybit
+Min price: 21.679 | Gate.io
+Spread: 1.24%
+@@@@@@@STX/USDT:
+Max price: 0.3999 | Bybit
+Min price: 0.395 | Coinbase
+Spread: 1.23%
+@@@@@@@ENJ/USDT:
+Max price: 0.53761 | Gate.io
+Min price: 0.531 | Coinbase
+Spread: 1.23%
+@@@@@@@FX/USDT:
+Max price: 0.2232 | Huobi
+Min price: 0.2205 | Gate.io
+Spread: 1.21%
+@@@@@@@POKT/USDT:
+Max price: 0.1009 | Gate.io
+Min price: 0.09968 | Bybit
+Spread: 1.21%
+@@@@@@@IOST/USDT:
+Max price: 0.0135517 | MEXC
+Min price: 0.013389 | Gate.io
+Spread: 1.2%
+@@@@@@@LINK/USDT:
+Max price: 6.2296 | Phemex
+Min price: 6.15622 | Kraken
+Spread: 1.18%
+@@@@@@@BORA/USDT:
+Max price: 0.2912 | OKEX
+Min price: 0.28788 | Gate.io
+Spread: 1.14%
+@@@@@@@ALGO/USDT:
+Max price: 0.3087 | Kucoin
+Min price: 0.3052 | LBank
+Spread: 1.13%
+@@@@@@@FTM/USDC:
+Max price: 0.2552135 | MEXC
+Min price: 0.2524 | Huobi
+Spread: 1.1%
+@@@@@@@LOOKS/USDT:
+Max price: 0.3473 | Phemex
+Min price: 0.3435 | Bybit
+Spread: 1.09%
+@@@@@@@OP/USDC:
+Max price: 0.5308 | OKEX
+Min price: 0.5252 | Huobi
+Spread: 1.06%
+@@@@@@@DAO/USDT:
+Max price: 1.232 | MEXC
+Min price: 1.219 | Huobi
+Spread: 1.06%
+@@@@@@@REN/USDT:
+Max price: 0.121016 | Huobi
+Min price: 0.11973 | Gate.io
+Spread: 1.06%
+@@@@@@@HBAR/USDT:
+Max price: 0.06165 | Bybit
+Min price: 0.061006 | Gate.io
+Spread: 1.04%
+@@@@@@@OKT/USDT:
+Max price: 17.03 | OKEX
+Min price: 16.855 | Gate.io
+Spread: 1.03%
+@@@@@@@DOME/USDT:
+Max price: 0.00898 | Bybit
+Min price: 0.008888 | Gate.io
+Spread: 1.02%
+@@@@@@@REQ/BTC:
+Max price: 5.98e-06 | Coinbase
+Min price: 5.92e-06 | Binance
+Spread: 1.0%
 @@@@@@@

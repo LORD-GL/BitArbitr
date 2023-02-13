@@ -104,5 +104,4 @@ pairs = [
         ["BNB", "ETH"], ["BNB", "BTC"],     ["XRP", "ETH"],
         ["ADA", "BTC"], ["ADA", "ETH"],     ["SOL", "BTC"], ["SOL", "ETH"],
         ["DOT", "BTC"], ["DOT", "ETH"],
-        
 ]

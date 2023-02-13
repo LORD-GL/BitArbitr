@@ -1,7 +1,7 @@
 from core import binance_core as binance, bybit_core as bybit
 from core import kucoin_core as kucoin, huobi_core as huobi
 # from core import exmo_core as exmo 
-from core import coinbase_core as coinbase, ftx_core as ftx
+# from core import coinbase_core as coinbase ERROR AttributeError: module 'collections' has no attribute 'MutableMapping'
 from core import okex_core as okx, kraken_core as kraken
 from core import phemex_core as phemex, gateio_core as gateio # НЕПОНЯТНАЯ ОШИБКА
 from core import aex_core as aex #hoo_core as hoo,  # woo_core as woo
@@ -9,6 +9,7 @@ from core import lbank_core as lbank, bitfinex_core as bitfinex # ONLY USDT
 # import poloniex_core as poloniex
 # from core import genimi_core as genimi
 from core import mexc_core as mexc, crypto_core as crypto
+#from core import aex_core as aex
 
 from conf import *
 from time import gmtime, strftime, time, sleep
@@ -66,8 +67,7 @@ def make_dict_ex_price(pair): # update or inf
     ex_price['Binance'], ex_vol['Binance'] = binance.get_price(symbol="".join(pair)) 
     ex_price['Kucoin'], ex_vol['Kucoin'] = kucoin.get_price(symbol="-".join(pair))
     ex_price['Huobi'], ex_vol['Huobi'] = huobi.get_price(symbol="".join(pair).lower())
-    ex_price['Coinbase'], ex_vol['Coinbase'] = coinbase.get_price(symbol="-".join(pair))
-    ex_price['FTX'], ex_vol['FTX'] = ftx.get_price(pair[0], pair[1])
+    #ex_price['Coinbase'], ex_vol['Coinbase'] = coinbase.get_price(symbol="-".join(pair))
     ex_price['OKEX'], ex_vol['OKEX'] = okx.get_price(symbol="-".join(pair))
     ex_price['Kraken'], ex_vol['Kraken'] = kraken.get_price(symbol="".join(pair))
     ex_price['Phemex'], ex_vol['Phemex'] = phemex.get_price(symbol="".join(pair))
@@ -78,14 +78,13 @@ def make_dict_ex_price(pair): # update or inf
     ex_price['MEXC'], ex_vol['MEXC'] = mexc.get_price(symbol="".join(pair))
     ex_price['Crypto.com'], ex_vol['Crypto.com'] = crypto.get_price(symbol="_".join(pair))
     #ex_price['Hoo'], ex_vol['Hoo'] = hoo.get_price(symbol="-".join(pair))
-    ex_price['AEX'], ex_vol['AEX'] = ftx.get_price(pair[0], pair[1])
+    # ex_price['AEX'], ex_vol['AEX'] = ftx.get_price(pair[0], pair[1])
 
     mes += "(Bybit)         | " + str(check_error(ex_price.get("Bybit"))) + f" | Vol: {check_error(ex_vol['Bybit'])}\n"
     mes += "(Binance)    | " + str(check_error(ex_price.get("Binance"))) + f" | Vol: {check_error(ex_vol['Binance'])}\n"
     mes += "(Kucoin)      | " + str(check_error(ex_price.get("Kucoin"))) + f" | Vol: {check_error(ex_vol['Kucoin'])}\n"
     mes += "(Huobi)       | " + str(check_error(ex_price.get("Huobi"))) + f" | Vol: {check_error(ex_vol['Huobi'])}\n"
-    mes += "(Coinbase) | " + str(check_error(ex_price.get("Coinbase"))) + f" | Vol: {check_error(ex_vol['Coinbase'])}\n"
-    mes += "(FTX)            | " + str(check_error(ex_price.get("FTX"))) + f" | Vol: {check_error(ex_vol['FTX'])}\n"
+    #mes += "(Coinbase) | " + str(check_error(ex_price.get("Coinbase"))) + f" | Vol: {check_error(ex_vol['Coinbase'])}\n"
     mes += "(OKEX)        | " + str(check_error(ex_price.get("OKEX"))) + f" | Vol: {check_error(ex_vol['OKEX'])}\n"
     mes += "(Kraken)     | " + str(check_error(ex_price.get("Kraken"))) + f" | Vol: {check_error(ex_vol['Kraken'])}\n"
     mes += "(Phemex)   | " + str(check_error(ex_price.get("Phemex"))) + f" | Vol: {check_error(ex_vol['Phemex'])}\n"
@@ -96,7 +95,7 @@ def make_dict_ex_price(pair): # update or inf
     mes += "(MEXC)        | " + str(check_error(ex_price.get("MEXC"))) + f" | Vol: {check_error(ex_vol['MEXC'])}\n"
     mes += "(Crypto.com)| " + str(check_error(ex_price.get("Crypto.com"))) + f" | Vol: {check_error(ex_vol['Crypto.com'])}\n"
     #mes += "(Hoo)            | " + str(check_error(ex_price.get("Hoo"))) + f" | Vol: {check_error(ex_vol['Hoo'])}\n"
-    mes += "(AEX)            | " + str(check_error(ex_price.get("AEX"))) + f" | Vol: {check_error(ex_vol['AEX'])}\n"
+    #mes += "(AEX)            | " + str(check_error(ex_price.get("AEX"))) + f" | Vol: {check_error(ex_vol['AEX'])}\n"
 
     return ex_price, mes
 
