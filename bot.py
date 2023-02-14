@@ -54,7 +54,10 @@ def admin(message):
         elif data[1] == "delete" and len(data) == 3:
             func.admin_delete_user(data[2], message.chat.id)
         elif data[1] == "update":
-            func.update_iterator(message.chat.id, bot)
+            try:
+                func.update_iterator(message.chat.id, bot)
+            except:
+                print("Updating went wrong, pleas RESTART updating")
         else:
             bot.send_message(message.chat.id, "Sorry, i don't know this method (send: admin info to see more)")
     else:
